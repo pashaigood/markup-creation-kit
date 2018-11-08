@@ -1,15 +1,14 @@
+const Paths = require('./constants/Paths');
+
 module.exports = () => {
-	return {
-		module: {
-			rules: [
-				{
-					test: /\.pug$/,
-					loader: 'pug-loader',
-					options: {
-						pretty: true
-					}
-				}
-			]
-		}
-	}
-}
+  return {
+    devServer: {
+      overlay: true,
+      contentBase: Paths.build,
+      watchContentBase: true,
+      publicPath: "/",
+      stats: 'errors-only',
+      port: 9000
+    }
+  }
+};

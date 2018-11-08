@@ -1,47 +1,40 @@
-const path = require('path');
-const webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Paths = require('./webpack/constants/Paths');
 const merge = require('webpack-merge');
-const pug = require('./webpack/pug');
 const devserver = require('./webpack/devserver');
-const sass = require('./webpack/sass');
-const css = require('./webpack/css');
+const styles = require('./webpack/styles');
+const pages = require('./webpack/pages');
 
-const PATHS = {
-	source: path.join(__dirname, 'src'),
-	build: path.join(__dirname, 'dist')
-};
-
-const common = merge([{
-	entry: './src/index.js',
-	output: {
-		path: PATHS.build,
-		filename: 'scripts/[name].js',
-		publicPath: 'dist'
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: PATHS.source + '/pages/index/index.pug'
-		}),
-		new ExtractTextPlugin("styles.css")
-	]},
-	pug(),
-	sass(),
-	css()
+const common = merge([
+  {
+    resolve: {
+      modules: [path.resolve(Paths.source), 'node_modules'],
+      extensions: ['.pug', '.js', '.css', 'scss', '.json']
+    },
+    output: {
+      path: Paths.build,
+      filename: 'scripts/[name].js',
+      publicPath: '/',
+    }
+  },
+  pages(),
+  styles()
 ]);
 
 module.exports = (env, argv) => {
-	if (env === 'production') {
-		return common
-	}
+  const mode = { mode: env };
+  if (env === 'production') {
+    return merge([mode, common]);
+  }
 
-	if (env === 'development') {
-		return merge(
-			[
-				common,
-				devserver()
-			]
-		)
-	}
+  if (env === 'development') {
+    return merge(
+        [
+          mode,
+          common,
+          devserver(),
+        ],
+    );
+  }
 };

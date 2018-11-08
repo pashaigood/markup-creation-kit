@@ -6,7 +6,7 @@
   "author": "Radyuk Tanya",
   "license": "ISC",
   "scripts": {
-    "dev": "webpack-dev-server --env development --open",
+    "dev": "webpack-dev-server --env development --hot",
     "build": "webpack --env production"
   },
   "devDependencies": {
@@ -14,13 +14,18 @@
     "@babel/preset-env": "^7.1.0",
     "babel-loader": "^8.0.4",
     "css-loader": "^1.0.1",
+    "extract-loader": "^3.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^2.0.0",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.10.0",
     "path": "^0.12.7",
     "pug": "^2.0.3",
+    "pug-html-loader": "^1.1.5",
     "pug-loader": "^2.4.0",
     "sass-loader": "^7.1.0",
+    "string-replace-loader": "^2.1.1",
     "style-loader": "^0.23.1",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
