@@ -4,11 +4,23 @@ module.exports = () => {
       rules: [
         {
           test: /\.(woff|woff2|eot|ttf|otf)$/,
-          use: ['file-loader'],
+          use: [{
+            loader: 'file-loader',
+            options: {
+              outputPath: 'fonts/',
+              name: '[name].[ext]'
+            }
+          }],
         },
         {
           test: /\.(png|svg|jpg|gif)$/,
-          use: ['file-loader'],
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/'
+            }
+          }],
         },
       ],
     },

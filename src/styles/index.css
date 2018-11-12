@@ -1,4 +1,7 @@
+@import "~fonts/Roboto";
+
 body, html {
+  font-family: 'Roboto', sans-serif;
   background: lightgray;
   height: 100%;
 }

@@ -1,8 +1,8 @@
 ## HTML
 
 ### Syntax
-* html
-* pug
+* ~~html~~
+* ~~pug~~
 
 ### Features
 * minification
@@ -10,34 +10,35 @@
 ## Styles
 
 ### Syntax
-* css
-* Less
-* Sass
-* Stylus
-- all was added
--reset css was added
+* ~~css~~
+* ~~Less~~
+* ~~Sass~~
+* ~~Stylus~~
+* ~~reset css~~
 
 ### Features
-* auto-prefix - done
+* ~~auto-prefix~~
 * css-modules
 * critical-styles
 * minification
 * source-map
+* lint
 
 ## Scripts
 
-### Features
-* source-map
+### Syntax
+* es6
 
 ### Features
+* source-map
+* lint
 
 ## Assets
 
 * Fonts
 * Images
 * Favicon
+* Sprites
 
 ### Features
 * optimization
-
-линты !
