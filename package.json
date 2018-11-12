@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start": "webpack-dev-server --hot --env development",
-    "test": "webpack-dev-server --env production",
+    "test": "webpack-dev-server --env production --port 9000",
     "build": "webpack --env production"
   },
   "devDependencies": {

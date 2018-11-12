@@ -1,5 +1,4 @@
-require('reset-css');
-require('styles/index.css');
-require('styles/index.scss');
-require('styles/index.styl');
-require('styles/index.less');
+import 'styles/index.css';
+import 'styles/index.scss';
+import 'styles/index.styl';
+import 'styles/index.less';

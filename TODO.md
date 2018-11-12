@@ -35,11 +35,10 @@
 
 ## Assets
 
-* Fonts
-* Images
-* Favicon
+* ~~Fonts~~
+* ~~Images~~
+* ~~Favicon~~
 * Sprites
-* SVG
 
 ### Features
 * optimization
