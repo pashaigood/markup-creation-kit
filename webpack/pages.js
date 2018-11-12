@@ -13,18 +13,17 @@ module.exports = () => {
             {
               loader: 'pug-loader',
               options: {
-                pretty: true
-              }
-            }
-          ]
-        }
-      ]
+                pretty: true,
+              },
+            },
+          ],
+        },
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
         template: Paths.source + '/pages/index.pug',
-        hash: true
-      })
+      }),
     ]
   };
-}
+};

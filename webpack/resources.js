@@ -33,14 +33,15 @@ module.exports = () => {
     plugins: [
       new FaviconsWebpackPlugin({
         prefix: 'images/logo/',
+        persistentCache: true,
         logo: path.join(Paths.source, 'images', 'favicon.jpg'),
         icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
+          android: false,
+          appleIcon: false,
+          appleStartup: false,
           coast: false,
           favicons: true,
-          firefox: true,
+          firefox: false,
           opengraph: false,
           twitter: false,
           yandex: false,

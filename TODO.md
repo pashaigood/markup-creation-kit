@@ -39,6 +39,7 @@
 * Images
 * Favicon
 * Sprites
+* SVG
 
 ### Features
 * optimization

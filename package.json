@@ -10,8 +10,8 @@
     "> 1%"
   ],
   "scripts": {
-    "start": "npm run dev",
-    "dev": "webpack-dev-server --env development --hot --open",
+    "start": "webpack-dev-server --hot --env development",
+    "test": "webpack-dev-server --env production",
     "build": "webpack --env production"
   },
   "devDependencies": {
