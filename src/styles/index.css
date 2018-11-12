@@ -1,3 +1,4 @@
-body {
-  background: indianred;
+body, html {
+  background: lightgray;
+  height: 100%;
 }

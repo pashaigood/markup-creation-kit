@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoPrefixer = require('autoprefixer');
 
 module.exports = () => {
   const cssLoader = {
@@ -8,6 +9,16 @@ module.exports = () => {
     }
   };
 
+  const postLoader = {
+		loader: 'postcss-loader',
+		options: {
+			plugins: [
+				autoPrefixer()
+			],
+			sourceMap: true
+		}
+	};
+
   return {
     module: {
       rules: [
@@ -15,22 +26,38 @@ module.exports = () => {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [cssLoader],
+            use: [cssLoader, postLoader]
           }),
-          exclude: '/node_modules/',
+          exclude: '/node_modules/'
         },
         {
           test: /\.scss$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [cssLoader, 'sass-loader'],
+            use: [cssLoader, postLoader, 'sass-loader']
           }),
-          exclude: '/node_modules/',
+          exclude: '/node_modules/'
         },
-      ],
+        {
+          test: /\.styl$/,
+					use: ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+    			  use: [cssLoader, postLoader, 'stylus-loader']
+					}),
+					exclude: '/node_modules/'
+        },
+				{
+					test: /\.less$/,
+					use: ExtractTextPlugin.extract({
+						fallback: 'style-loader',
+						use: [cssLoader, postLoader, 'less-loader']
+					}),
+					exclude: '/node_modules/'
+				}
+      ]
     },
     plugins: [
       new ExtractTextPlugin({ filename: 'styles.css', disable: true })
     ]
   };
-};
+}

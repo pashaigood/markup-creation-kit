@@ -14,9 +14,11 @@
 * Less
 * Sass
 * Stylus
+- all was added
+-reset css was added
 
 ### Features
-* auto-prefix
+* auto-prefix - done
 * css-modules
 * critical-styles
 * minification
@@ -37,3 +39,5 @@
 
 ### Features
 * optimization
+
+линты !
