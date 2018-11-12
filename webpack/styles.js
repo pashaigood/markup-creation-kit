@@ -13,10 +13,7 @@ module.exports = () => {
       rules: [
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [cssLoader],
-          }),
+          use: ['style-loader', cssLoader],
           exclude: '/node_modules/',
         },
         {

@@ -13,9 +13,26 @@ module.exports = () => {
           test: /\.pug$/,
           use: [
             {
-              loader: 'pug-loader',
+              loader: 'html-loader',
+              options: {
+                interpolate: true
+              }
+            },
+            {
+              loader: 'pug-html-loader',
               options: {
                 pretty: true,
+              }
+            }
+          ]
+        },
+        {
+          test: /\.html$/,
+          use: [
+            {
+              loader: 'html-loader',
+              options: {
+                interpolate: true
               }
             }
           ]
@@ -24,8 +41,7 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: Paths.source + '/pages/index.pug',
-        hash: true
+        template: Paths.source + '/pages/index.html'
       })
     ]
   };

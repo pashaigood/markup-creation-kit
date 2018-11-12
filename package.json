@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "dev": "webpack-dev-server --env development --hot",
-    "build": "webpack --env production"
+    "build": "webpack --env development"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
