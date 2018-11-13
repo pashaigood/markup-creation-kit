@@ -1,37 +1,39 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const Paths = require('./webpack/constants/Paths');
 const merge = require('webpack-merge');
 const devserver = require('./webpack/devserver');
 const styles = require('./webpack/styles');
 const pages = require('./webpack/pages');
+const resources = require('./webpack/resources');
 
-const common = merge([
-  {
-    resolve: {
-      modules: [path.resolve(Paths.source), 'node_modules'],
-      extensions: ['.pug', '.js', '.css', 'scss', '.json']
+
+
+module.exports = (env) => {
+  const common = merge([
+    { mode: env },
+    {
+      resolve: {
+        modules: [path.resolve(Paths.source), 'node_modules'],
+        extensions: ['.pug', '.js', '.css', '.scss', '.less', '.styl', '.json'],
+      },
+      output: {
+        path: Paths.build,
+        filename: 'scripts/[name].js',
+        publicPath: '/',
+      },
     },
-    output: {
-      path: Paths.build,
-      filename: 'scripts/[name].js',
-      publicPath: '/',
-    }
-  },
-  pages(),
-  styles()
-]);
+    pages(),
+    styles(env),
+    resources(),
+  ]);
 
-module.exports = (env, argv) => {
-  const mode = { mode: env };
   if (env === 'production') {
-    return merge([mode, common]);
+    return merge([common]);
   }
 
   if (env === 'development') {
     return merge(
         [
-          mode,
           common,
           devserver(),
         ],

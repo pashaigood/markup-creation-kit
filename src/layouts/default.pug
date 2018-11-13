@@ -3,7 +3,10 @@ html(lang="en")
     head
     meta(charset="UTF-8")
     title Webpack app
-    body Hello
+    body
         include ~components/header
-        include ~components/header
-        include ~components/header
+        img(src=require('images/html5-css3.png'))
+        block body
+        .hello-less hello less
+        .hello-scss hello scss
+        .hello-stylus hello styles
