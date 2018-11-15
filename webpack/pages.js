@@ -4,7 +4,6 @@ const Paths = require('./constants/Paths');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
 module.exports = (env) => {
-
   const pagesNames = walkSync(path.join(Paths.source, '/pages'));
   const pages = pagesNames.map((pageName) => {
     return new HtmlWebpackPlugin({
@@ -21,7 +20,7 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.html$/,
-          use: 'html-loader'
+          use: 'html-loader',
         },
         {
           test: /\.pug$/,

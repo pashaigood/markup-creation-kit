@@ -1,30 +1,28 @@
-const Paths = require('./constants/Paths');
+const webpack = require('webpack');
 
 module.exports = () => {
   return {
     devServer: {
-      overlay: true,
       hot: true,
-      contentBase: Paths.build,
-      publicPath: '/',
-      stats: 'errors-only',
       before(app, server) {
-        Reload.server = server
-      }
+        Reload.server = server;
+      },
     },
     plugins: [
-      new Reload()
+      new Reload(),
+      new webpack.HotModuleReplacementPlugin(),
     ],
   };
 };
 
 function Reload() {}
+
 Reload.prototype.apply = reloadHtml;
 
 function reloadHtml(compiler) {
   const cache = {};
   const plugin = {
-      name: 'CustomHtmlReloadPlugin'
+    name: 'CustomHtmlReloadPlugin',
   };
 
   compiler.hooks.compilation.tap(plugin, compilation => {
