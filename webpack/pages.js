@@ -4,7 +4,7 @@ const Paths = require('./constants/Paths');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 
 module.exports = (env) => {
-  const pagesNames = walkSync(path.join(Paths.source, '/pages'));
+  const pagesNames = walkSync(path.join(Paths.source, '/pages')).filter(pagesName => pagesName.includes('.pug'));
   const pages = pagesNames.map((pageName) => {
     return new HtmlWebpackPlugin({
       filename: pageName.replace('pug', 'html'),

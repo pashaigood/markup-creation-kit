@@ -2,6 +2,8 @@ const path = require('path');
 const Paths = require('./constants/Paths');
 const WebpackMessages = require('webpack-messages');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const chalk = require('chalk');
 
 module.exports = (env) => {
   return {
@@ -29,6 +31,9 @@ module.exports = (env) => {
       contentBase: Paths.build,
     },
     plugins: [
+      new ProgressBarPlugin({
+        format: chalk.green.bold('[:bar] '),
+      }),
       new CaseSensitivePathsPlugin(),
       new WebpackMessages({
         name: 'client',
