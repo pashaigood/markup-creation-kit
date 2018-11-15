@@ -23,6 +23,7 @@ module.exports = (env) => {
       child_process: 'empty',
     },
     devServer: {
+      open: true,
       quiet: true,
       overlay: true,
       contentBase: Paths.build,
