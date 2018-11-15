@@ -4,7 +4,11 @@ module.exports = env => {
       rules: [
         {
           test: /\.m?js$/,
-          use: 'babel-loader',
+          use: [
+            // 'file-loader?name=scripts/part_[name].js',
+            // 'extract-loader',
+            'babel-loader',
+          ],
           exclude: '/node_modules/',
         },
       ],

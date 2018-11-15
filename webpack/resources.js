@@ -31,7 +31,7 @@ module.exports = () => {
       ],
     },
     plugins: [
-      new FaviconsWebpackPlugin({
+      /*new FaviconsWebpackPlugin({
         prefix: 'images/logo/',
         persistentCache: true,
         logo: path.join(Paths.source, 'images', 'favicon.jpg'),
@@ -47,7 +47,7 @@ module.exports = () => {
           yandex: false,
           windows: false
         }
-      }),
+      }),*/
     ],
   };
 };

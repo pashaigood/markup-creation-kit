@@ -1,0 +1,21 @@
+<div class="my-component">
+    <div>
+        Hello world!
+    </div>
+    <style type="text/css">
+        .my-component {
+            background: red;
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+    <script type="text/javascript">
+      (function() {
+        const element = document.querySelector('.my-component:last-of-type');
+        setInterval(() => {
+          element.style.background = element.style.background === 'blue' ? 'red' : 'blue';
+        }, Math.round(Math.random() * 1000));
+      })();
+    </script>
+</div>

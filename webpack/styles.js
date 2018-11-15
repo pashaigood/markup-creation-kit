@@ -2,6 +2,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoPrefixer = require('autoprefixer');
 
 module.exports = env => {
+  const extractCSS = new ExtractTextPlugin({
+    filename: 'styles/index.css',
+    disable: false//env !== 'production',
+  });
+
   const cssLoader = {
     loader: 'css-loader',
     options: {
@@ -24,7 +29,7 @@ module.exports = env => {
       rules: [
         {
           test: /\.css$/,
-          use: ExtractTextPlugin.extract({
+          use: extractCSS.extract({
             fallback: 'style-loader',
             use: [cssLoader, postLoader],
           }),
@@ -32,7 +37,7 @@ module.exports = env => {
         },
         {
           test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
+          use: extractCSS.extract({
             fallback: 'style-loader',
             use: [cssLoader, postLoader, 'sass-loader'],
           }),
@@ -40,7 +45,7 @@ module.exports = env => {
         },
         {
           test: /\.styl$/,
-          use: ExtractTextPlugin.extract({
+          use: extractCSS.extract({
             fallback: 'style-loader',
             use: [cssLoader, postLoader, 'stylus-loader'],
           }),
@@ -48,7 +53,7 @@ module.exports = env => {
         },
         {
           test: /\.less$/,
-          use: ExtractTextPlugin.extract({
+          use: extractCSS.extract({
             fallback: 'style-loader',
             use: [cssLoader, postLoader, 'less-loader'],
           }),
@@ -57,9 +62,7 @@ module.exports = env => {
       ],
     },
     plugins: [
-      new ExtractTextPlugin({
-        filename: 'styles.css',
-        disable: env !== 'production',
-      })],
+      extractCSS
+    ],
   };
 };
