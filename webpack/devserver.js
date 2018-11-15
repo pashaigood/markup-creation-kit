@@ -8,13 +8,12 @@ module.exports = () => {
       contentBase: Paths.build,
       publicPath: '/',
       stats: 'errors-only',
-      port: 9000,
       before(app, server) {
         Reload.server = server
       }
     },
     plugins: [
-      new Reload(),
+      new Reload()
     ],
   };
 };
@@ -24,15 +23,19 @@ Reload.prototype.apply = reloadHtml;
 
 function reloadHtml(compiler) {
   const cache = {};
-  const plugin = { name: 'CustomHtmlReloadPlugin' };
+  const plugin = {
+      name: 'CustomHtmlReloadPlugin'
+  };
+
   compiler.hooks.compilation.tap(plugin, compilation => {
     compilation.hooks.htmlWebpackPluginAfterEmit.tap(plugin, data => {
       const orig = cache[data.outputName];
       const html = data.html.source();
-      // plugin seems to emit on any unrelated change?
+
       if (orig && orig !== html) {
         Reload.server.sockWrite(Reload.server.sockets, 'content-changed');
       }
+
       cache[data.outputName] = html;
     });
   });

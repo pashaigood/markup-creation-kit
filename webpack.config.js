@@ -1,16 +1,18 @@
-const path = require('path');
-const Paths = require('./webpack/constants/Paths');
-const merge = require('webpack-merge');
 const devserver = require('./webpack/devserver');
-const styles = require('./webpack/styles');
+const clean = require('./webpack/clean');
+const merge = require('webpack-merge');
+const path = require('path');
 const pages = require('./webpack/pages');
+const Paths = require('./webpack/constants/Paths');
+const styles = require('./webpack/styles');
+const scripts = require('./webpack/scripts');
 const resources = require('./webpack/resources');
-
-
 
 module.exports = (env) => {
   const common = merge([
-    { mode: env },
+    {
+      mode: env,
+    },
     {
       resolve: {
         modules: [path.resolve(Paths.source), 'node_modules'],
@@ -24,11 +26,19 @@ module.exports = (env) => {
     },
     pages(),
     styles(env),
-    resources(),
+    scripts(env),
+    resources(env),
   ]);
 
   if (env === 'production') {
-    return merge([common]);
+    return merge([
+      common,
+      {
+        output: {
+          publicPath: './',
+        },
+      },
+    ]);
   }
 
   if (env === 'development') {

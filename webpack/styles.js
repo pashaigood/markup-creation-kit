@@ -1,11 +1,13 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoPrefixer = require('autoprefixer');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = env => {
   const cssLoader = {
     loader: 'css-loader',
     options: {
       sourceMap: true,
+      minimize: true
     },
   };
 
@@ -14,8 +16,12 @@ module.exports = env => {
     options: {
       plugins: [
         autoPrefixer(),
+        require('stylelint')({}),
+        require('postcss-reporter')({
+          clearReportedMessages: true
+        })
       ],
-      sourceMap: true,
+      sourceMap: true
     },
   };
 
@@ -26,40 +32,49 @@ module.exports = env => {
           test: /\.css$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [cssLoader, postLoader],
+            use: [
+              cssLoader,
+              postLoader
+            ],
           }),
-          exclude: '/node_modules/',
+          exclude: '/node_modules/'
         },
         {
           test: /\.scss$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [cssLoader, postLoader, 'sass-loader'],
+            use: [cssLoader, postLoader, 'sass-loader']
           }),
-          exclude: '/node_modules/',
+          exclude: '/node_modules/'
         },
         {
           test: /\.styl$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [cssLoader, postLoader, 'stylus-loader'],
+            use: [cssLoader, postLoader, 'stylus-loader']
           }),
-          exclude: '/node_modules/',
+          exclude: '/node_modules/'
         },
         {
           test: /\.less$/,
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
-            use: [cssLoader, postLoader, 'less-loader'],
+            use: [cssLoader, postLoader, 'less-loader']
           }),
-          exclude: '/node_modules/',
+          exclude: '/node_modules/'
         },
       ],
     },
     plugins: [
       new ExtractTextPlugin({
-        filename: 'styles.css',
-        disable: env !== 'production',
-      })],
+        filename: 'styles/styles.css',
+        disable: env !== 'production'
+      })
+    ],
+    optimization: {
+      minimizer: [
+        new OptimizeCssAssetsPlugin()
+      ]
+    }
   };
 };
