@@ -67,7 +67,7 @@ module.exports = env => {
     },
     plugins: [
       new ExtractTextPlugin({
-        filename: 'styles/styles.css',
+        filename: 'styles/index.css',
         disable: env !== 'production'
       })
     ],

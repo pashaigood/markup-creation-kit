@@ -25,10 +25,13 @@ module.exports = (env) => {
       child_process: 'empty',
     },
     devServer: {
-      open: true,
       quiet: true,
       overlay: true,
+      compress: true,
       contentBase: Paths.build,
+    },
+    module: {
+      noParse: [/\.min\.js$/i]
     },
     plugins: [
       new ProgressBarPlugin({

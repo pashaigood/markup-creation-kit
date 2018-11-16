@@ -3,7 +3,7 @@ const path = require('path');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env) => {
-  const publicPath = env === 'production' ? '.' : '';
+  const publicPath = env === 'production' ? './' : '/';
   return {
     module: {
       rules: [
