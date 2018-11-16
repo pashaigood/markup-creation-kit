@@ -1,8 +1,6 @@
-@import "~reset-css";
-@import "~fonts/Roboto";
-
-body, html {
-  font-family: 'Roboto', sans-serif;
-  background: #ecf0f1;
-  height: 100%;
-}
+@import "../fonts/icomoon";
+@import "./bootstrap.min.css";
+@import "./aos.min.css";
+@import "./animsition.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "./style.css";

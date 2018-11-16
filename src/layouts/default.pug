@@ -1,12 +1,40 @@
-doctype html
-html(lang="en")
+html(lang='en')
     head
-    meta(charset="UTF-8")
-    title Webpack app
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        title Markup Starter Kit
     body
-        include ~components/header
-        block body
-        .hello-less hello less
-        .hello-scss hello scss
-        .hello-stylus hello styles
-        include ~components/footer
+        .js-animsition.animsition(data-animsition-in-class='fade-in', data-animsition-out-class='fade-out')
+            header.templateux-navbar(data-aos='fade-down')
+                .container-fluid
+                    .row
+                        .col-sm-8
+                            .site-logo
+                                a.animsition-link(href='/')
+                                    img(src=require('../images/Itransition-logo.png'), width="400px")
+                                    span.ml-4 Markup Starter Kit
+                        //include ~components/menu
+            block body
+            footer.templateux-footer
+                .container-fluid
+                    .row
+                        .col-md-6.text-md-left.text-center
+                            p
+                                // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+                                | Copyright ©
+                                script.
+                                  document.write(new Date().getFullYear());
+                                |  All rights reserved | This template is made with
+                                i.fa.fa-heart(aria-hidden='true')
+                                |  by
+                                a.text-primary(href='https://colorlib.com', target='_blank') Colorlib
+                                // Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+                        .col-md-6.text-md-right.text-center.footer-social
+                            a.p-3(href='#')
+                                span.icon-facebook2
+                            a.p-3(href='#')
+                                span.icon-twitter2
+                            a.p-3(href='#')
+                                span.icon-dribbble2
+                            a.p-3(href='#')
+                                span.icon-instagram
