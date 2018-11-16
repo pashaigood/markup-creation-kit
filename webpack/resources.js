@@ -3,16 +3,16 @@ const path = require('path');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 module.exports = (env) => {
-  const publicPath = env === 'production' ? './' : '/';
   return {
     module: {
       rules: [
         {
           test: /\.(woff|woff2)$/,
-          loader: "url-loader?limit=10000&mimetype=application/font-woff",
+          loader: "url-loader",
           options: {
-            publicPath,
-            outputPath: '/fonts/',
+            limit: 10000,
+            mimetype: 'application/font-woff',
+            outputPath: 'fonts/',
             name: '[name].[ext]'
           },
         },
@@ -22,8 +22,7 @@ module.exports = (env) => {
             {
               loader: 'file-loader',
               options: {
-                publicPath,
-                outputPath: '/fonts/',
+                outputPath: 'fonts/',
                 name: '[name].[ext]'
               },
             }],
@@ -32,11 +31,11 @@ module.exports = (env) => {
           test: /\.(png|svg|jpg|gif)$/,
           use: [
             {
-              loader: 'url-loader?limit=8192',
+              loader: 'url-loader',
               options: {
-                publicPath,
+                limit: 8192,
                 name: '[name].[ext]',
-                outputPath: '/images/'
+                outputPath: 'images/'
               },
             }],
         },
@@ -44,9 +43,9 @@ module.exports = (env) => {
     },
     plugins: [
       new FaviconsWebpackPlugin({
-        prefix: 'images/logo/',
-        persistentCache: true,
-				emitStats: false,
+        prefix: 'images/',
+        // persistentCache: true,
+				// emitStats: false,
 				logo: path.join(Paths.source, 'images', 'favicon.png'),
         icons: {
           android: false,

@@ -2,6 +2,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoPrefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+const minCssTextExtractPlugin = new ExtractTextPlugin('styles/index.min.css');
+
 module.exports = env => {
   const cssLoader = {
     loader: 'css-loader',
@@ -29,14 +31,22 @@ module.exports = env => {
     module: {
       rules: [
         {
-          test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [
-              cssLoader,
-              postLoader
-            ],
-          }),
+          test: /\.css$/i,
+          oneOf: [
+            {
+              test: /\.min\./,
+              use: minCssTextExtractPlugin.extract(['css-loader'])
+            },
+            {
+              use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: [
+                  cssLoader,
+                  postLoader
+                ],
+              })
+            }
+          ],
           exclude: '/node_modules/'
         },
         {
@@ -64,12 +74,14 @@ module.exports = env => {
           exclude: '/node_modules/'
         },
       ],
+      // noParse: [/\.min\.css$/i]
     },
     plugins: [
       new ExtractTextPlugin({
         filename: 'styles/index.css',
         disable: env !== 'production'
-      })
+      }),
+      minCssTextExtractPlugin
     ],
     optimization: {
       minimizer: [

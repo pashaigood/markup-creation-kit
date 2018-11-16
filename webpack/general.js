@@ -27,11 +27,7 @@ module.exports = (env) => {
     devServer: {
       quiet: true,
       overlay: true,
-      compress: true,
-      contentBase: Paths.build,
-    },
-    module: {
-      noParse: [/\.min\.js$/i]
+      compress: true
     },
     plugins: [
       new ProgressBarPlugin({

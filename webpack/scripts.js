@@ -15,6 +15,7 @@ module.exports = env => {
           exclude: '/node_modules/'
         },
       ],
+      noParse: [/\.min\.js$/i]
     },
     optimization: {
       minimizer: [
