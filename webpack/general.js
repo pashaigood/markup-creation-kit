@@ -4,6 +4,7 @@ const WebpackMessages = require('webpack-messages');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
+const webpack = require('webpack');
 
 module.exports = (env) => {
   return {
@@ -29,7 +30,16 @@ module.exports = (env) => {
       overlay: true,
       compress: true
     },
+    performance: {
+      assetFilter: function(assetFilename) {
+        return assetFilename.endsWith('.js') || assetFilename.endsWith('.css');
+      }
+    },
     plugins: [
+      new webpack.EnvironmentPlugin({
+        NODE_ENV: env,//JSON.stringify(process.env.NODE_ENV),
+        DEBUG: false
+      }),
       new ProgressBarPlugin({
         format: chalk.green.bold('[:bar] '),
       }),

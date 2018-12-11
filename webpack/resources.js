@@ -10,25 +10,28 @@ module.exports = (env) => {
           test: /\.(woff|woff2)$/,
           loader: "url-loader",
           options: {
-            limit: 10000,
+            context: Paths.fonts,
+            limit: 8192,
             mimetype: 'application/font-woff',
             outputPath: 'fonts/',
-            name: '[name].[ext]'
+            name: '[path][name].[ext]'
           },
         },
         {
-          test: /\.(eot|ttf|otf)$/,
+          test: /\.(eot|ttf|otf|)$/,
           use: [
             {
               loader: 'file-loader',
               options: {
+                context: Paths.fonts,
                 outputPath: 'fonts/',
-                name: '[name].[ext]'
+                name: '[path][name].[ext]'
               },
             }],
         },
         {
-          test: /\.(png|svg|jpg|gif)$/,
+          test: /\.(png|jpg|gif|svg)$/,
+          // exclude: path.resolve(Paths.source, 'fonts') ,
           use: [
             {
               loader: 'url-loader',

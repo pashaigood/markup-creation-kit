@@ -2,16 +2,29 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoPrefixer = require('autoprefixer');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const minCssTextExtractPlugin = new ExtractTextPlugin('styles/index.min.css');
 
 module.exports = env => {
+  const publicPath = '../';
+  
   const cssLoader = {
     loader: 'css-loader',
     options: {
       sourceMap: true,
-      minimize: true
+      minimize: env === 'production'
     },
   };
+
+  const minCssTextExtractPlugin = new ExtractTextPlugin({
+    // allChunks: false,
+    filename: 'styles/vendor.css',
+    disable: false,
+  });
+  const cssTextExtractPlugin = new ExtractTextPlugin({
+    publicPath: 'styles',
+    filename: 'styles/index.css',
+    disable: env !== 'production',
+  });
+
 
   const postLoader = {
     loader: 'postcss-loader',
@@ -34,12 +47,21 @@ module.exports = env => {
           test: /\.css$/i,
           oneOf: [
             {
-              test: /\.min\./,
-              use: minCssTextExtractPlugin.extract(['css-loader'])
+              test: /\.min\./i,
+              use: minCssTextExtractPlugin.extract({
+                fallback: 'style-loader',
+                publicPath,
+                use: [{
+                  loader: 'css-loader',
+                  options: {
+                  }
+                }]
+              })
             },
             {
-              use: ExtractTextPlugin.extract({
+              use: cssTextExtractPlugin.extract({
                 fallback: 'style-loader',
+                publicPath,
                 use: [
                   cssLoader,
                   postLoader
@@ -50,24 +72,27 @@ module.exports = env => {
           exclude: '/node_modules/'
         },
         {
-          test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
+          test: /\.sc|ass$/i,
+          use: cssTextExtractPlugin.extract({
+            publicPath,
             fallback: 'style-loader',
             use: [cssLoader, postLoader, 'sass-loader']
           }),
           exclude: '/node_modules/'
         },
         {
-          test: /\.styl$/,
-          use: ExtractTextPlugin.extract({
+          test: /\.styl$/i,
+          use: cssTextExtractPlugin.extract({
+            publicPath,
             fallback: 'style-loader',
             use: [cssLoader, postLoader, 'stylus-loader']
           }),
           exclude: '/node_modules/'
         },
         {
-          test: /\.less$/,
-          use: ExtractTextPlugin.extract({
+          test: /\.less$/i,
+          use: cssTextExtractPlugin.extract({
+            publicPath,
             fallback: 'style-loader',
             use: [cssLoader, postLoader, 'less-loader']
           }),
@@ -77,11 +102,8 @@ module.exports = env => {
       // noParse: [/\.min\.css$/i]
     },
     plugins: [
-      new ExtractTextPlugin({
-        filename: 'styles/index.css',
-        disable: env !== 'production'
-      }),
-      minCssTextExtractPlugin
+      minCssTextExtractPlugin,
+      cssTextExtractPlugin,
     ],
     optimization: {
       minimizer: [

@@ -6,3 +6,4 @@ module.exports = {
 };
 
 module.exports.pages = path.join(module.exports.source, 'pages');
+module.exports.fonts = path.join(module.exports.source, 'fonts');

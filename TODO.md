@@ -6,6 +6,7 @@
 
 ### Features
 * minification
+* htmlhint-loader
 
 ## Styles
 
