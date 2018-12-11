@@ -1,11 +1,11 @@
-const general = require('./webpack/general')
-const devserver = require('./webpack/devserver');
+const general = require('./general')
+const devserver = require('./devserver');
 const merge = require('webpack-merge');
-const pages = require('./webpack/pages');
-const styles = require('./webpack/styles');
-const scripts = require('./webpack/scripts');
-const resources = require('./webpack/resources');
-const build = require('./webpack/build');
+const pages = require('./pages');
+const styles = require('./styles');
+const scripts = require('./scripts');
+const resources = require('./resources');
+const build = require('./build');
 
 module.exports = (env) => {
   const common = merge([

@@ -10,9 +10,9 @@
     "> 1%"
   ],
   "scripts": {
-    "start": "webpack-dev-server --env development --port 9000",
-    "test": "rimraf dist && webpack-dev-server --env production --port 9000 --open",
-    "build": "rimraf dist && webpack --env production"
+    "start": "webpack-dev-server --config tools/webpack.config --env development --port 9000",
+    "test": "rimraf dist && webpack-dev-server  --config tools/webpack.config  --env production --port 9000 --open",
+    "build": "rimraf dist && webpack --config tools/webpack.config --env production"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

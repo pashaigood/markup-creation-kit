@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const PurifyCSSPlugin = require('purifycss-webpack');
 const Paths = require('./constants/Paths');
-const ReplaceInFileWebpackPlugin = require('./plugins/replace-in-file-webpack-plugin');
+const ReplaceInFileWebpackPlugin = require('./plugins/replace-in-file-webpack-plugin/index');
 
 module.exports = () => {
   return {
