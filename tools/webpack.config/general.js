@@ -17,7 +17,7 @@ module.exports = (env) => {
       filename: 'scripts/[name].js',
       publicPath: '/',
     },
-    stats: "errors-only",
+    stats: 'errors-only',
     node: {
       dgram: 'empty',
       fs: 'empty',
@@ -28,17 +28,17 @@ module.exports = (env) => {
     devServer: {
       quiet: true,
       overlay: true,
-      compress: true
+      compress: true,
     },
     performance: {
       assetFilter: function(assetFilename) {
         return assetFilename.endsWith('.js') || assetFilename.endsWith('.css');
-      }
+      },
     },
     plugins: [
       new webpack.EnvironmentPlugin({
         NODE_ENV: env,//JSON.stringify(process.env.NODE_ENV),
-        DEBUG: false
+        DEBUG: false,
       }),
       new ProgressBarPlugin({
         format: chalk.green.bold('[:bar] '),
@@ -46,8 +46,11 @@ module.exports = (env) => {
       new CaseSensitivePathsPlugin(),
       new WebpackMessages({
         name: 'client',
-        logger: str => console.log(`>> ${str}`)
-      })
-    ]
-  }
+        logger: str => console.log(`>> ${str}`),
+      }),
+    ],
+    resolveLoader: {
+      modules: [path.join(Paths.app, 'node_modules'), 'node_modules'],
+    }
+  };
 };

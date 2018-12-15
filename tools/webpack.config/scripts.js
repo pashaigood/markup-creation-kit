@@ -7,12 +7,12 @@ module.exports = env => {
         {
           test: /\.min\.js$/,
           use: 'imports-loader?exports=>undefined,define=>undefined,module=>undefined,this=>window',
-          exclude: '/node_modules/'
+          exclude: /node_modules/
         },
         {
           test: /\.js$/,
           use: ['babel-loader', 'eslint-loader'],
-          exclude: '/node_modules/'
+          exclude: /node_modules/
         },
       ],
       noParse: [/\.min\.js$/i]
