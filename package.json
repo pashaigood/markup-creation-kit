@@ -20,7 +20,8 @@
     "install:tools-deps": "cd tools/node_modules && npm install"
   },
   "dependencies": {
-    "reset-css": "^4.0.1"
+    "reset-css": "^4.0.1",
+    "roboto-fontface": "^0.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

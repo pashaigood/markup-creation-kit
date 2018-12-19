@@ -1,0 +1,154 @@
+.application
+  position: relative
+  margin: auto
+  width: 375px
+  height: 812px
+  background: #5F13EF
+
+  &__header
+    z-index: 2
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    height: 44px
+    background: #000000
+    &__indicators
+      position: absolute
+      width: 68px
+      height: 16px
+      right: 14px
+      top: 15px
+
+  &__body
+    z-index: 1
+    position: relative
+    height: 812px
+    box-sizing: border-box
+    padding-top: 44px
+    padding-left: 24px
+    padding-right: 24px
+    color: #fff
+
+    &__heading--1
+      margin: 0
+      font-weight: bold
+      line-height: 1em
+      font-size: 40px
+
+    &__heading--2
+      margin: 0
+      font-weight: bold
+      line-height: 28px
+      font-size: 20px
+
+    &__heading--3
+      margin: 0
+      font-weight: 300
+      line-height: 24px
+      font-size: 16px
+
+    &__tools
+      margin-top: 15px
+      height: 24px
+
+    &__heading
+      margin-top: 13px
+
+    &__months
+      margin-top: 24px
+      height: 39px
+      overflow: hidden
+      width: 102%
+      ul
+        padding: 0
+        overflow: auto
+        margin: 0 -11px
+        margin-top: 3px
+        width: 1000%
+        &:after
+          content: ""
+          clear: both
+          display: table
+      li
+        position: relative
+        margin: 0 11px
+        float: left
+        list-style: none
+        height: 36px
+        cursor: pointer
+        &.active:after
+          position: absolute
+          width: 106%
+          bottom: 0
+          left: 0
+          content: " "
+          background: #FFE226
+          border: 2px solid #FFE226
+          box-sizing: border-box
+          border-radius: 2px
+
+    &__books
+      margin: 24px -24px 0
+      padding: 0 24px
+      overflow: hidden
+      &__frame
+        padding: 0
+        width: 1000%
+        margin: 0 -16px
+      &:after
+        content: ""
+        clear: both
+        display: table
+    &__book
+      margin: 0 16px
+      //box-shadow: 0 13px 108px #48005A
+      border-radius: 3px 8px 8px 3px
+      float: left
+      list-style: none
+      &__face
+        width: 152px
+        height: 230px
+        .active &
+          width: 264px
+          height: 399px
+      &__title
+        margin-top: 2px
+        .active &
+          margin-top: 10px
+      &__author
+        margin-top: 4px
+
+
+  &__bg
+    &--first
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      background: linear-gradient(98.27deg, #FFFFFF 0%, rgba(255, 255, 255, 0.0001) 85.78%)
+      mix-blend-mode: overlay
+      opacity: 0.33
+    &--second
+      position: absolute
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+      background: linear-gradient(132.73deg, rgba(176, 23, 23, 0.677649) 0%, rgba(195, 0, 0, 0.0001) 83.33%), linear-gradient(294.79deg, rgba(255, 255, 255, 0.0001) 0%, rgba(255, 255, 255, 0.536798) 100%)
+      mix-blend-mode: normal
+      opacity: 0.12
+
+  &__footer
+    z-index: 2
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    height: 84px
+
+    background: rgba(127, 56, 243, 0.8)
+    box-shadow: 0 2px 33px rgba(0, 0, 0, 0.326002)
+    backdrop-filter: blur(16.3097px)
+

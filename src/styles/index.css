@@ -1,8 +1,0 @@
-@import "~reset-css";
-@import "~fonts/Roboto";
-
-body, html {
-  font-family: 'Roboto', sans-serif;
-  background: #ecf0f1;
-  height: 100%;
-}
