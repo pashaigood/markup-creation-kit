@@ -4,7 +4,8 @@
     .application__header(role='header')
         img.application__header__indicators(src=require('./images/connections.svg'))
     .application__body(role='body')
-        .application__body__tools more
+        .application__body__tools
+            img(src=require('./images/icon-menu.svg'))
         .application__body__heading.application__body__heading--1
             | Your books
         .application__body__months
@@ -13,13 +14,6 @@
                 li(role='button') October
                 li(role='button') September
                 li(role='button') August
-
         .application__body__books
-            ul.application__body__books__frame
-                each val,index in [1, 2, 3, 4, 5]
-                    li.application__body__book(class=index===0 ? "active" : "")
-                        img.application__body__book__face(src=require('images/tmp/book-1.png'))
-                        h2.application__body__book__title.application__body__heading--2 Less Than Zero
-                        h3.application__body__book__author.application__body__heading--3 Bret Easton Ellis
-
+            include ../books/index.pug
     .application__footer(role='footer')

@@ -1,0 +1,35 @@
+.books
+  &__container
+    position: relative
+
+  padding: 0
+  width: 1000%
+  margin: 0 -16px
+
+  &__book
+    margin: 0 16px
+    //box-shadow: 0 13px 108px #48005A
+    border-radius: 3px 8px 8px 3px
+    float: left
+    list-style: none
+    &__face
+      width: 152px
+      height: 230px
+      .active &
+        width: 264px
+        height: 399px
+
+    &__title
+      .active &
+        margin-top: 10px
+    &__author
+      margin-top: 4px
+
+  &__rating
+    position: absolute
+    right: 1px
+    bottom: 24px
+    &_star
+      background: url("./images/start.svg") no-repeat
+      width: 18px
+      height: 16px

@@ -1,0 +1,11 @@
+.books__container
+    ul.books.clearfix
+        each val,index in [1, 2, 3, 4, 5]
+            li.books__book(class=index===0 ? "active" : "")
+                img.books__book__face(src=require('images/tmp/book-1.png'))
+                h2.books__book__title.application__body__heading--2 Less Than Zero
+                h3.books__book__author.application__body__heading--3 Bret Easton Ellis
+    .books__rating
+        ul.flat-list
+            each val in [1, 2, 3, 4, 5]
+                li.books__rating_star
