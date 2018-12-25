@@ -1,0 +1,5 @@
+- var items = require('./items')
+.footer
+    each button,index in items
+        .footer__item(role='button', class=index === 0 ? 'active' : '')
+            .footer__item__icon(style=button.style) !{button.icon}

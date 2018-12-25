@@ -30,7 +30,24 @@ module.exports = (env) => {
             }],
         },
         {
-          test: /\.(png|jpg|gif|svg)$/,
+          test: /\.svg$/,
+          oneOf: [
+            {
+              resourceQuery: /inline/,
+              loader: 'svg-inline-loader'
+            },
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192,
+                name: '[name].[ext]',
+                outputPath: 'images/'
+              },
+            }
+          ]
+        },
+        {
+          test: /\.(png|jpg|gif)$/,
           // exclude: path.resolve(Paths.source, 'fonts') ,
           use: [
             {
