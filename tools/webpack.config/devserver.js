@@ -1,4 +1,6 @@
 const webpack = require('webpack');
+const Reload = require('./plugins/html-webpack-plugin-reload');
+const HtmlValidatePlugin = require('./plugins/html-webpack-plugin-validate');
 
 module.exports = () => {
   return {
@@ -10,31 +12,9 @@ module.exports = () => {
     },
     plugins: [
       new Reload(),
+      new HtmlValidatePlugin(),
       new webpack.HotModuleReplacementPlugin(),
     ],
   };
 };
 
-function Reload() {}
-
-Reload.prototype.apply = reloadHtml;
-
-function reloadHtml(compiler) {
-  const cache = {};
-  const plugin = {
-    name: 'CustomHtmlReloadPlugin',
-  };
-
-  compiler.hooks.compilation.tap(plugin, compilation => {
-    compilation.hooks.htmlWebpackPluginAfterEmit.tap(plugin, data => {
-      const orig = cache[data.outputName];
-      const html = data.html.source();
-
-      if (orig && orig !== html) {
-        Reload.server.sockWrite(Reload.server.sockets, 'content-changed');
-      }
-
-      cache[data.outputName] = html;
-    });
-  });
-}

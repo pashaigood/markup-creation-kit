@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  root: process.cwd(),
   app: path.join(process.cwd(), 'tools'),
   source: path.join(process.cwd(), 'src'),
   build: path.join(process.cwd(), 'dist'),

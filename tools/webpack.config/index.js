@@ -1,4 +1,5 @@
-const general = require('./general')
+require('../common/services/init');
+const general = require('./general');
 const devserver = require('./devserver');
 const merge = require('webpack-merge');
 const pages = require('./pages');

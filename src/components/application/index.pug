@@ -1,20 +1,20 @@
 .application
     .application__bg--first
     .application__bg--second
-    .application__header(role='header')
-        img.application__header__indicators(src=require('./images/connections.svg'))
-    .application__body(role='body')
+    .application__header
+        img.application__header__indicators(src=require('./images/connections.svg'), alt='indicators mock')
+    .application__body
         .application__body__tools
-            img(src=require('./images/icon-menu.svg'))
+            img(src=require('./images/icon-menu.svg'), alt='more items')
         .application__body__heading.application__body__heading--1
             | Your books
         .application__body__months
-            ul
-                li.active(role='button') This month
-                li(role='button') October
-                li(role='button') September
-                li(role='button') August
+            ul(role="listbox")
+                li.active(role='option') This month
+                li(role='option') October
+                li(role='option') September
+                li(role='option') August
         .application__body__books
             include ../books/index.pug
-    .application__footer(role='footer')
+    .application__footer
         include ../footer/index.pug
